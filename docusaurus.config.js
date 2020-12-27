@@ -9,11 +9,14 @@ module.exports = {
   organizationName: 'scottoffen', // Usually your GitHub org/user name.
   projectName: 'grapevine', // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['csharp'],
+    },
     navbar: {
       title: 'Grapevine',
       logo: {
         alt: 'Grapevine Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -69,7 +72,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Scott Offen | Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Scott Offen`,
     },
   },
   presets: [
