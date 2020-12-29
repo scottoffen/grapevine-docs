@@ -9,31 +9,28 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Easy to Use',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    imageUrl: 'img/undraw_server.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Embedding a REST/HTTP server in your application should be simple. If what you've been using doesn't feel simple, try Grapevine. It doesn't get any simpler than this.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: 'Easy to Extend',
+    imageUrl: 'img/undraw_maintenance.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Grapevine is easy to extend to meet your needs. You can create your own implementation, or extend existing ones and add or replace only the parts you need.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: 'Lightning Fast',
+    imageUrl: 'img/undraw_fast_loading.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Grapevine is async from end-to-end to increase the performance and responsiveness of your application, particularly when you have long-running operations.
       </>
     ),
   },

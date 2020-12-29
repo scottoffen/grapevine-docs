@@ -6,12 +6,15 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'scottoffen', // Usually your GitHub org/user name.
-  projectName: 'grapevine', // Usually your repo name.
+  organizationName: 'scottoffen',
+  projectName: 'grapevine',
   themeConfig: {
     prism: {
       additionalLanguages: ['csharp'],
     },
+    googleAnalytics: {
+        trackingID: 'G-NY1EMEGC7C',
+      },
     navbar: {
       title: 'Grapevine',
       logo: {
@@ -35,6 +38,10 @@ module.exports = {
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: 'Grapevine Logo',
+        src: 'img/logo.png',
+      },
       links: [
         {
           title: 'Docs',
@@ -89,7 +96,7 @@ module.exports = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/scottoffen/grapevine-docs/edit/master//blog/',
+            'https://github.com/scottoffen/grapevine-docs/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
