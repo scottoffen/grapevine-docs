@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Grapevine',
-  tagline: 'The embeddable, unopinionated minimalist REST framework for .NET',
+  tagline: 'Fast, unopinionated, embeddable, minimalist web framework for .NET',
   url: 'https://scottoffen.github.io/grapevine',
   baseUrl: '/grapevine/',
   onBrokenLinks: 'throw',
@@ -14,7 +14,7 @@ module.exports = {
     },
     googleAnalytics: {
         trackingID: 'G-NY1EMEGC7C',
-      },
+    },
     navbar: {
       title: 'Grapevine',
       logo: {
@@ -38,10 +38,6 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      logo: {
-        alt: 'Grapevine Logo',
-        src: 'img/logo.png',
-      },
       links: [
         {
           title: 'Docs',

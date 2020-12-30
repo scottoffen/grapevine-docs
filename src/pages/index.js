@@ -17,7 +17,7 @@ const features = [
     ),
   },
   {
-    title: 'Easy to Extend',
+    title: 'Extensible',
     imageUrl: 'img/undraw_maintenance.svg',
     description: (
       <>
@@ -26,7 +26,7 @@ const features = [
     ),
   },
   {
-    title: 'Lightning Fast',
+    title: 'Like, So Fast',
     imageUrl: 'img/undraw_fast_loading.svg',
     description: (
       <>
