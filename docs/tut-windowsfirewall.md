@@ -5,16 +5,42 @@ sidebar_label: Windows Firewall
 slug: tutorials/windows-firewall
 ---
 
-If you're running Windows, then in order for your server to be accessible from outside of your local machine you'll need to open the Windows Firewall for your application. This requires accessing some COM references, which AFAIK can't be done in a class library. But you can easily add it to your application using the example below.
+If you're running Windows, then in order for your server to be accessible from outside of your local machine you'll need to open the Windows Firewall for your application. You can do this either from the Windows Defender UI or using code in your application. In both case, you will need elevated privledges (admin account) to make changes to the firewall.
 
-## Add The COM References
+## Open Windows Firewall Via UI
+
+These instructions are for Windows 10. For earlier versions of Windows, consult the documentation for specific steps.
+
+1. Open the _Windows Defender Firewall_ Control Panel module by running `control firewall.cpl` from the command line.
+
+2. On the left hand navigation, click on **Allow an app or feature through Windows Defender Firewall** to open the _Allowed Apps_ dialog.
+
+![img](../static/img/tutorials/windows-defender-allowed-apps.png)
+
+3. Click on the **Change settings** button to allow the settings to be changed. If you are not logged in to an admin account, you will be prompted for admin credentials.
+
+4. Click on **Allow another app...** button to open the _Add an app_ dialog. Click the **Browse** button to browse to your applications executable file, and select it.
+
+![img](../static/img/tutorials/windows-defender-add-allowed-apps.png)
+
+5. Click on the **Add** button to add allow the application access through the firewall.
+
+## Open Windows Firewall Via Code
+
+This requires accessing some COM references, which AFAIK can't be done in a class library. But you can easily add it to your application using the example below.
+
+### Add The COM References
 
 You will first want to add two COM references to your application, `hnetcfg.dll` and `FirewallAPI.dll`. Both DLLs are located in `C:\Windows\System32` directory.
 
 1. In Visual Studio, right click on your project dependencies and select **Add COM Reference**.
+
 1. Click the **Browse** button in the lower right hand corner of the dialog box.
+
 1. Navigate to `C:\Windows\System32` and select `hnetcfg.dll`, then clicke the **Add** button.
+
 1. Repeat steps 2 and 3 for `FirewallAPI.dll`.
+
 1. Click **OK** in the dialog box to return to Visual Studio.
 
 ![img](../static/img/tutorials/add-com-references.png)
@@ -23,7 +49,7 @@ The COM references should now be added to your project.
 
 ![img](../static/img/tutorials/show-com-references.png)
 
-## Create a FirewallPolicy Class
+### Create a FirewallPolicy Class
 
 Next we'll create a simple class that will create our firewall rule and policy. We'll include methods with matching delegate signatures for our server starting and stopping event handlers to add and remove the rule from the policy.
 
@@ -81,7 +107,7 @@ namespace Samples
 }
 ```
 
-## Add Middleware Extension Method
+### Add Middleware Extension Method
 
 You can add a middleware extension to handle adding and removing your policy.
 
@@ -106,7 +132,7 @@ namespace Samples
 }
 ```
 
-## Using Your Middleware Extension
+### Using Your Middleware Extension
 
 You can now add your firewall policy to the server - make sure to do this before starting the server.
 

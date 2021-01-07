@@ -25,6 +25,7 @@ module.exports = {
         'using-https-ssl',
         'extending-grapevine',
         'windows-authentication',
+        'run-without-admin-account',
         'windows-firewall'
     ],
   },
