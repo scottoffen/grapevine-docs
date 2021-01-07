@@ -59,6 +59,10 @@ module.exports = {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/grapevine',
             },
+            {
+              label: 'GitHub Discussions',
+              href: 'https://github.com/scottoffen/grapevine/discussions',
+            },
           ],
         },
         {

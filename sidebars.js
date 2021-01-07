@@ -17,7 +17,7 @@ module.exports = {
         'advanced-access',
     ],
     Tutorials: [
-        'tutorials-overview',
+        'tutorials-faqs',
         'send-response',
         'middleware',
         'multipart-form-data',

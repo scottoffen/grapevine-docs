@@ -25,10 +25,14 @@ public class MyResource
     [RestRoute("Get", "/api/test")]
     public async Task Test(IHttpContext context)
     {
-        await context.Response.SendResponseAsync("Successfully hit the test route!");
+        await context.Response.SendResponseAsync("Successfully hit the test route!").ConfigureAwait(false);
     }
 }
 ```
+
+:::tip
+Consult [this guide](https://devblogs.microsoft.com/dotnet/configureawait-faq/) to see if `.ConfigureAwait(false)` is right for you.
+:::
 
 Next, create your first server using provided defaults with the `RestServerBuilder` class and start your server up!
 
