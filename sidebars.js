@@ -25,7 +25,7 @@ module.exports = {
         'using-https-ssl',
         'extending-grapevine',
         'windows-authentication',
-        'run-without-admin-account',
+        'configure-namespace-reservation',
         'windows-firewall'
     ],
     "Style Guide": ['doc1'],

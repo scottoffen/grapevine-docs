@@ -1,11 +1,11 @@
 ---
-id: run-without-admin-account
-title: Running Without Admin Access
-sidebar_label: Running Without Admin Access
-slug: tutorials/run-without-admin-account
+id: configure-namespace-reservation
+title: Configure Namespace Reservation
+sidebar_label: Configure Namespace Reservation
+slug: tutorials/configure-namespace-reservation
 ---
 
-When you try to run your server outside of Visual Studio or Visual Studio Code, you might see an `Access Denied` exception occur. This will happen when using wildcard URI without either running the app as an administrator or configure namespace reservations for your URI.
+When you try to run your server outside of Visual Studio or Visual Studio Code, you might see an `Access Denied` exception occur. This will happen when not use a `localhost` or loopback IP address without either running the app as an administrator or configure namespace reservations for your URI.
 
 :::tip
 For development purposes, assuming you are an administrator on your local Windows instance, you can simply run your IDE or command line as administrator.
@@ -15,7 +15,7 @@ For development purposes, assuming you are an administrator on your local Window
 
 For obvious reasons, counting on your application to be running under an admin account in production is unwise. In these instances, you'll want to [configure a namespace reservation](https://docs.microsoft.com/en-us/windows/win32/http/namespace-reservations-registrations-and-routing).
 
-These reservations can be made by using the [netsh](https://docs.microsoft.com/en-us/windows/win32/http/netsh-commands-for-http) utility command [`add urlacl`](https://docs.microsoft.com/en-us/windows/win32/http/add-urlacl).
+These reservations can be made by using the [`netsh`](https://docs.microsoft.com/en-us/windows/win32/http/netsh-commands-for-http) utility command [`add urlacl`](https://docs.microsoft.com/en-us/windows/win32/http/add-urlacl).
 
 ```
 $ netsh http add urlacl url=http://+:1234/ user=DOMAIN\user
