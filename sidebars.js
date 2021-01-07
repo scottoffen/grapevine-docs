@@ -1,6 +1,5 @@
 module.exports = {
   someSidebar: {
-    "Style Guide": ['doc1'],
     Grapevine: [
         'overview',
         'routes',
@@ -18,6 +17,7 @@ module.exports = {
         'advanced-access',
     ],
     Tutorials: [
+        'tutorials-overview',
         'send-response',
         'middleware',
         'multipart-form-data',
@@ -28,5 +28,6 @@ module.exports = {
         'run-without-admin-account',
         'windows-firewall'
     ],
+    "Style Guide": ['doc1'],
   },
 };
