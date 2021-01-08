@@ -4,7 +4,10 @@ title: Overview
 slug: /
 ---
 
-Grapevine is REST/HTTP server that listens for incoming requests and routes them to specific methods in your code. It can also serve static assets. While it is flexible in how it can be used, it is not intended to be a replacement for IIS. Rather, it's intended use is to be an embedded server in an application whose primary purpose is not a web server. You can embedd it in a Windows Service, a desktop application or a console application.
+Grapevine is a fast, unopinionated, embeddable, minimalist web framework for .NET. Grapevine is not intended to be a replacement for IIS or ASP.NET, but rather to function as an embedded REST/HTTP server in non-ASP.NET projects.
+
+- Grapevine listens for incoming requests and routes them to specific functions and methods in your code
+- Grapevine can serve static HTML, JavaScript, CSS and images, as well as other static assets
 
 ## Inspiration
 
