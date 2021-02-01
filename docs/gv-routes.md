@@ -71,7 +71,7 @@ Best practice is to use the [Route Scanner](gv-route-scanner.md) to generate rou
 
 ### Static Method
 
-When generating a route from a static method, you assign the static method treat it like you would a delegate.
+When generating a route from a static method, you assign the static method like you would a delegate.
 
 ```csharp
 public static class StaticTestResource
@@ -87,7 +87,7 @@ var route = new Route(StaticTestResource.StaticTestRoute, "Get", "/static-method
 
 ## Specifying An Http Method
 
-The [`HttpMethod`](gv-http-method.md) helper class can be used to specify the method for matching routes. It contains a number of static properties the ensure consistency.
+The [`HttpMethod`](gv-http-method.md) helper class can be used to specify the method for matching routes. It contains a number of static properties that ensure consistency.
 
 ```csharp
 var route = new Route(callback, HttpMethod.Get, "/some/path");
@@ -120,10 +120,6 @@ var expr = @"^/users/(\d{3,5})";
 var route1 = new Route(callback, "Any", expr);
 var route2 = new Route(callback, "Any", new Regex(expr));
 ```
-
-:::tip
-While regular expressions can be useful when the value needs to match a specific patterns that can't be accomplished using parameterized string and route pattern constraints, you can also create your own constraint resolvers, thereby allowing you create custom parameters in your parameterized strings.
-:::
 
 ### Using Parameterized Strings
 
@@ -176,68 +172,19 @@ The following table lists the built-in route constraints and their behavior. All
 | `length(n)`    | `{state:length(2)}`    | `NE`, `OH`      | String must be exactly `n` characters in length.
 | `length(m,n)`  | `{name:length(5,20)}`  | `Samantha`      | String must be between `m` and `n` characters in length.
 
-### Custom Route Parameter Constraints
-
-You can create your own custom route parameter constraints, but you cannot change the behavior of the existing ones. Custom constraints must be added before they can be used to generate a route template or the `string` constraint will be used by default. Specify a key for the constraint and a `RouteConstraintResolver` delegate.
-
-Constraints are used to create a regular expression segments for the specified key that represents that constraint. Your resolve should return a regular expression segment that represents your needs. Your segment should contain exactly one capture group.
-
-```csharp
-public static class PizzaSizeConstraint
-{
-    public static string PizzaSizeResolver(string args)
-    {
-        return $"([sm|small|md|medium|lg|large])";
-    }
-}
-
-RouteConstraints.AddResolver("pizza", PizzaSizeConstraint.PizzaSizeResolver)
-
-var route = new Route(callback, "Any", "/menu/{pizza}");
-route.RouteTemplate.Pattern.ToString();
-// Returns: (i*)^/menu/([sm|small|md|medium|lg|large])$
-```
-
-The `args` can be ignored unless your custom resolver has some additional sub-constraints. If you want to allow the use of the length constraints, pass the args to `RouteConstraints.LengthResolver` method, and it will return a quantifier (e.g., `+`, `{3,5}`, etc.).
-
-Sub-constraints would be registered just like a regular constraint, and accessed via the key from inside your resolver. It doesn't matter which resolver is added first, as long as they are both available before a route template that would use them is generated.
-
-```csharp
-public static class PizzaSizeConstraint
-{
-    public static string PizzaSizeResolver(string args)
-    {
-        var crust = RouteConstraints.Resolve(args);
-        return $"([sm|small|md|medium|lg|large]-{crust})";
-    }
-
-    public static string CrustTypeResolver(string args)
-    {
-        return $"[deepdish|thin|regular]";
-    }
-}
-
-RouteConstraints.AddResolver("pizza", PizzaSizeConstraint.PizzaSizeResolver)
-RouteConstraints.AddResolver("crust", PizzaSizeConstraint.CrustTypeResolver)
-
-var route = new Route(callback, "Any", "/menu/{pizza:crust}");
-route.RouteTemplate.Pattern.ToString();
-// Returns: (i*)^/menu/([sm|small|md|medium|lg|large]-[deepdish|thin|regular])$
-```
-
 ## Accessing Route Parameter Values
 
-Route parameter values are accessed via keys on the `IHttpRequest.PathParameters` property. All values are strings that will need to be cast other types are required.
+Route parameter values are accessed via keys on the `IHttpRequest.PathParameters` property. All values are strings that will need to be cast to other types as required.
 
-- If your route template was a literal string, there will not be any key/value
+- If your route template was a literal string, there will not be any key/value pairs
 - If your route template was a regular expression string, the key for each capture groups will be the string `p-` followed by the number of the capture group, e.g. `p-0`, `p-1`, etc.
 - If your route template was a parameterized string, the the key will be the name you used for the parameter.
 
-You can add keys to route templates that were regular expressions by adding them, in order, to the `IRoute.RouteTemplate.PatternKeys` list.
+You can add keys to route templates that were generated from regular expressions by adding them, in order, to the `IRoute.RouteTemplate.PatternKeys` list.
 
 ## Limit Route Matching Using Headers
 
-You can also further limit whether a route is matched to a request based on the value of any header.
+You can also further limit whether a route is matched to a request based on the value of any header. The method call takes the header key as a string and a regular expression to match the value. Only one regular expression can be defined per header value.
 
 ```csharp
 var route = new Route(callback, "Get", "/some/path")
@@ -261,7 +208,7 @@ route.Enabled = true
 
 ## Route Name and Description
 
-The `Name` and `Description` properties are primarily used in output when debugging and logging. You can change them at any time. You can also use the `Name` property to retrieve a route from the routers routing table. While uniquness is not required, in this last case, it will be helpful if your route names are unique.
+The `Name` and `Description` properties are primarily used in output when debugging and logging. You can change them at any time. You can also use the `Name` property to retrieve a route from the routing table on the router. While uniquness is not required, it would be helpful in this last case if your route names are unique.
 
 ```csharp
 var route = server.Router.RoutingTable

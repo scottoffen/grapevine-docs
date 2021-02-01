@@ -2,6 +2,7 @@ module.exports = {
   someSidebar: {
     Grapevine: [
         'overview',
+        'startup',
         'routes',
         'route-scanner',
         'router',
@@ -15,6 +16,9 @@ module.exports = {
         'http-methods',
         'content-types-encoding',
         'advanced-access',
+    ],
+    "Grapevine Client" : [
+        'client-overview'
     ],
     Tutorials: [
         'tutorials-faqs',
